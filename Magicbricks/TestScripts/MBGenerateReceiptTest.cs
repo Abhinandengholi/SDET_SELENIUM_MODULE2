@@ -1,24 +1,23 @@
 ﻿using Magicbricks.PageObjects;
 using Magicbricks.Utilities;
-using Serilog;
+using OpenQA.Selenium.Interactions;
+using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using Serilog;
 
 namespace Magicbricks.TestScripts
 {
-   
     [TestFixture]
-    internal class MBLoginTest : CoreCodes
+    internal class MBGnerateReceipt : CoreCodes
     {
         //Asserts
 
-
         [Test, Order(1), Category("Regression Test")]
-        public void UserLoginTest()
+        public void GeneratereceiptTest()
         {
             string currDir = Directory.GetParent(@"../../../").FullName;
             string logfilepath = currDir + "/Logs/log_" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".txt";
@@ -26,7 +25,7 @@ namespace Magicbricks.TestScripts
                 .WriteTo.Console()
                 .WriteTo.File(logfilepath, rollingInterval: RollingInterval.Day)
                 .CreateLogger();
-           
+
             Thread.Sleep(2000);
             //string? currDir = Directory.GetParent(@"../../../")?.FullName;
             string? excelFilePath = currDir + "/TestData/InputData.xlsx";
@@ -38,44 +37,57 @@ namespace Magicbricks.TestScripts
                 foreach (var excelData in excelDataList)
                 {
 
-
+                    string? fullname = excelData?.FullName;
                     string? email = excelData?.Email;
-
                     string? phonenumber = excelData?.PhoneNumber;
+                    string? rentamount = excelData?.RentAmount;
+                    string? propaddress = excelData?.PropertyAddress;
+                    string? landownername = excelData?.LandOwnerName;
 
 
-                    Console.WriteLine($"Email: {email}");
+                    Console.WriteLine($"FullName: {fullname}, Email: {email}, Phonenumber: {phonenumber},RentAmount: {rentamount}, PropertyAddress: {propaddress}, LandOwnerName: {landownername}");
 
-                    MagicBricksHP mbhp = new(driver);
-                    var userlogin = mbhp.UserLog();
+
+                    var mbhp = new MagicBricksHP(driver);
+
+
+                IWebElement service = driver.FindElement(By.XPath("//li[@class='js-menu-container'][5]"));
+                Actions actions = new Actions(driver);
+                    actions.MoveToElement(service).Build().Perform();
+                Thread.Sleep(3000);
+
+
+                    var genreceipt = mbhp.SelectService();
                     List<string> lstWindow = driver.WindowHandles.ToList();
                     driver.SwitchTo().Window(lstWindow[1]);
+                    genreceipt.Receiptdeatils(fullname,email,phonenumber,rentamount,propaddress,landownername);
 
                     TakeScreenshot();
-                    Assert.That(driver.Url.Contains("login"));
+                    Assert.That(driver.Url.Contains("propertyservices"));
 
-                    LogTestResult("login success", "login test success");
+                    LogTestResult("generate success", "generate receipt test success");
                     test = extent.CreateTest("success");
-                    test.Pass("login completed");
+                    test.Pass("receipt generation completed");
 
-                    userlogin.UserDetail(email);
                 }
 
             }
             catch (ArgumentException ex)
             {
-                LogTestResult("login test failed", ex.Message);
+                LogTestResult("Geneate receipt test failed", ex.Message);
             }
 
 
-                // Assert.That(""."")
-
-            }
-
-
-
-
-            //Log.CloseAndFlush();
+            // Assert.That(""."")
 
         }
+
+
+
+
+        //Log.CloseAndFlush();
+
     }
+}
+
+

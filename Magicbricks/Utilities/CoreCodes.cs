@@ -87,7 +87,7 @@ namespace Magicbricks.Utilities
             ITakesScreenshot its = (ITakesScreenshot)driver;
             Screenshot screenshot = its.GetScreenshot();
             string currDir = Directory.GetParent(@"../../../").FullName;
-            string filepath = currDir + "/Screenshot/ss_" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".png";
+            string filepath = currDir + "/Screenshot/screenshot_" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".png";
             screenshot.SaveAsFile(filepath);
             Console.WriteLine("Taken ss");
         }

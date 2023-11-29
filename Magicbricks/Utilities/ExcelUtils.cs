@@ -39,7 +39,10 @@ namespace Magicbricks.Utilities
                                 FullName = GetValueOrDefault(row, "fullName"),
                                 Email = GetValueOrDefault(row, "email"),
                                 Password= GetValueOrDefault(row, "pwd"),
-                                PhoneNumber = GetValueOrDefault(row, "phoneNumber")
+                                PhoneNumber = GetValueOrDefault(row, "phoneNumber"),
+                                 RentAmount= GetValueOrDefault(row, "rentAmount"),
+                                LandOwnerName = GetValueOrDefault(row, "landownername"),
+                                PropertyAddress = GetValueOrDefault(row, "propaddress")
                             };
                                 
 

@@ -30,39 +30,54 @@ namespace Magicbricks.TestScripts
             //string? currDir = Directory.GetParent(@"../../../")?.FullName;
             string? excelFilePath = currDir + "/TestData/InputData.xlsx";
             string? sheetName = "Searchdata";
-
-            List<SearchData> excelDataList = ExcelUtils.ReadSignUpExcelData(excelFilePath, sheetName);
-
-            foreach (var excelData in excelDataList)
+            try
             {
 
+                List<SearchData> excelDataList = ExcelUtils.ReadSignUpExcelData(excelFilePath, sheetName);
 
-                string? fullname = excelData?.FullName;
-                string? email = excelData?.Email;
-                string? password = excelData?.Password;
-                string? phonenumber = excelData?.PhoneNumber;
-
-
-                Console.WriteLine($"FullName: {fullname}, Email: {email},Password: {password}, Phonenumber: {phonenumber}");
+                foreach (var excelData in excelDataList)
+                {
 
 
-                var register = mbhp.Login();
-                List<string> lstWindow = driver.WindowHandles.ToList();
-                driver.SwitchTo().Window(lstWindow[1]);
-                Console.WriteLine(driver.Url);
-                register.Regstr(fullname,email,password,phonenumber);
+                    string? fullname = excelData?.FullName;
+                    string? email = excelData?.Email;
+                    string? password = excelData?.Password;
 
-                
+                    string? phonenumber = excelData?.PhoneNumber;
 
-                // Assert.That(""."")
 
+                    Console.WriteLine($"FullName: {fullname}, Email: {email}, Phonenumber: {phonenumber}");
+
+
+                    var register = mbhp.Login();
+                    List<string> lstWindow = driver.WindowHandles.ToList();
+                    driver.SwitchTo().Window(lstWindow[1]);
+                    TakeScreenshot();
+                    Assert.That(driver.Url.Contains("login"));
+
+                    LogTestResult("Registeration complete", "Register test success");
+                    test = extent.CreateTest("success");
+                    test.Pass("Register completed");
+                    Console.WriteLine(driver.Url);
+                    register.Regstr(fullname, email, password, phonenumber);
+
+
+
+                    // Assert.That(""."")
+
+                }
+
+
+
+
+                //Log.CloseAndFlush();
             }
-
-
-
-
-            //Log.CloseAndFlush();
-
+            catch (ArgumentException ex)
+            {
+                LogTestResult("Registeration test failed", ex.Message);
+            }
         }
+
+        
     }
 }

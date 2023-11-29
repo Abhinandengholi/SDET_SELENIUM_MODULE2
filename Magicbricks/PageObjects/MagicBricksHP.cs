@@ -27,18 +27,16 @@ namespace Magicbricks.PageObjects
         public IWebElement? LocationInput { get; set; }
 
 
-
-
         [FindsBy(How = How.XPath, Using = "//span[@id='buy_proertyTypeDefault']")]
         public IWebElement? proprtyselct { get; set; }
-        
-      [FindsBy(How = How.XPath, Using = "//label[@id='10002_10003_10021_10022']")]
+
+        [FindsBy(How = How.XPath, Using = "//label[@id='10002_10003_10021_10022']")]
         public IWebElement? flatSelect { get; set; }
 
 
         [FindsBy(How = How.XPath, Using = "//span[@id='rent_budget_lbl']")]
         public IWebElement? Budgetselct { get; set; }
-      
+
         [FindsBy(How = How.XPath, Using = "//div[text()='₹10 Lac']")]
         public IWebElement? SpecifyBudget { get; set; }
 
@@ -57,6 +55,10 @@ namespace Magicbricks.PageObjects
 
         [FindsBy(How = How.LinkText, Using = "Sign Up")]
         public IWebElement? SignUp { get; set; }
+        [FindsBy(How = How.XPath, Using = "//li[@class='js-menu-container'][4]")]
+        public IWebElement? PropertyService { get; set; }
+        [FindsBy(How = How.XPath, Using = "//a[text()='Generate Rent Receipt']")]
+        public IWebElement? Rentreceipt { get; set; }
 
         //Act
         public Property Search(string scity)
@@ -91,11 +93,17 @@ namespace Magicbricks.PageObjects
             return new UserLogin(driver);
 
         }
+        public GenerateReceipt SelectService()
+        {
+            //PropertyService?.Click();
+            Rentreceipt?.Click();
+
+            return new GenerateReceipt(driver);
 
 
-
-
+        }
     }
+       
 
 }
 
