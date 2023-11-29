@@ -9,15 +9,15 @@ using System.Threading.Tasks;
 
 namespace Magicbricks.TestScripts
 {
- 
-     [TestFixture]
-    internal class MBRegisterTest:CoreCodes
+   
+    [TestFixture]
+    internal class MBLoginTest : CoreCodes
     {
         //Asserts
 
 
         [Test, Order(1), Category("Regression Test")]
-        public void LoginTest()
+        public void UserLoginTest()
         {
             string currDir = Directory.GetParent(@"../../../").FullName;
             string logfilepath = currDir + "/Logs/log_" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".txt";
@@ -37,22 +37,21 @@ namespace Magicbricks.TestScripts
             {
 
 
-                string? fullname = excelData?.FullName;
                 string? email = excelData?.Email;
-                string? password = excelData?.Password;
+               
                 string? phonenumber = excelData?.PhoneNumber;
 
 
-                Console.WriteLine($"FullName: {fullname}, Email: {email},Password: {password}, Phonenumber: {phonenumber}");
+                Console.WriteLine($"Email: {email}");
 
 
-                var register = mbhp.Login();
+                var userlogin = mbhp.UserLog();
                 List<string> lstWindow = driver.WindowHandles.ToList();
                 driver.SwitchTo().Window(lstWindow[1]);
-                Console.WriteLine(driver.Url);
-                register.Regstr(fullname,email,password,phonenumber);
 
-                
+                userlogin.UserDetail(email);
+
+
 
                 // Assert.That(""."")
 

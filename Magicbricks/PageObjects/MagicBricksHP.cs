@@ -51,6 +51,10 @@ namespace Magicbricks.PageObjects
 
         [FindsBy(How = How.XPath, Using = "//a[text()='Login']")]
         public IWebElement? Logindrop { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//a[@class='mb-login__drop-cta' and contains(text(),'Login')]")]
+        public IWebElement? Loginclick { get; set; }
+
         [FindsBy(How = How.LinkText, Using = "Sign Up")]
         public IWebElement? SignUp { get; set; }
 
@@ -80,7 +84,13 @@ namespace Magicbricks.PageObjects
             SignUp?.Click();
             return new Register(driver);
         }
+        public UserLogin UserLog()
+        {
+            Logindrop?.Click();
+            Loginclick?.Click();
+            return new UserLogin(driver);
 
+        }
 
 
 
