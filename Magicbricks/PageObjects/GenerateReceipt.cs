@@ -57,6 +57,8 @@ namespace Magicbricks.PageObjects
         [FindsBy(How = How.XPath, Using = "//label[@for='tnc-checkbox']")]
         public IWebElement? checkbx { get; set; }
         
+        [FindsBy(How = How.XPath, Using = "//div[@class='mb-form__col text-right']//following::a[text()='Generate Rent Receipt Now']")]
+        public IWebElement? generatecheckbx { get; set; }
         public void Receiptdeatils(string fullname, string email, string phonenumber,string rentamount,string propaddress,string landownername )
         {
             RentAmount?.Click();
@@ -65,6 +67,10 @@ namespace Magicbricks.PageObjects
             PropertyAddress?.SendKeys(propaddress);
             LandOwnerName?.Click();
             LandOwnerName?.SendKeys(landownername);
+            Clickstrtdate?.Click();
+            Selectstrtdate?.Click();
+            Clickenddate?.Click();
+            Selectenddate?.Click();
             Name?.Click();
             Name?.SendKeys(fullname);
             PhoneNumber?.Click();
@@ -72,6 +78,7 @@ namespace Magicbricks.PageObjects
             EmaiL?.Click();
             EmaiL?.SendKeys(email);
             checkbx?.Click();
+            generatecheckbx?.Click();   
 
         }
     }
