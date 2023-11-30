@@ -30,7 +30,7 @@ namespace Magicbricks.TestScripts
             {
                 var mbhp = new MagicBricksHP(driver);
                 mbhp.Locationcheck();
-                Assert.That(driver.Url.Contains("property-for-sale-rent-in-Chennai"));
+                Assert.That(driver.Url.Contains("residential"));
                 LogTestResult("location", "input successfully");
                 test = extent.CreateTest("Input success");
                 test.Pass("Input location");

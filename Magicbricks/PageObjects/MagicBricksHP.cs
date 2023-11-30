@@ -120,13 +120,16 @@ namespace Magicbricks.PageObjects
         }
         public void Locationcheck()
         {
-            Locationclick?.Click(); 
-            Thread.Sleep(3000);
+            Locationclick?.Click();
             Specificlocationclick?.Click();
+
         }
-        public void Helpclick()
+        
+        
+        public Helpcenter  Helpclick()
         {
             Helpcenter?.Click();
+            return new Helpcenter(driver);
         }
     }
        
