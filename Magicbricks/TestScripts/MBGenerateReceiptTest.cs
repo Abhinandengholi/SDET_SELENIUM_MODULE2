@@ -14,8 +14,6 @@ namespace Magicbricks.TestScripts
     [TestFixture]
     internal class MBGnerateReceipt : CoreCodes
     {
-        //Asserts
-
         [Test, Order(1), Category("Regression Test")]
         public void GeneratereceiptTest()
         {
@@ -27,15 +25,14 @@ namespace Magicbricks.TestScripts
                 .WriteTo.File(logfilepath, rollingInterval: RollingInterval.Day)
                 .CreateLogger();
 
-            Thread.Sleep(2000);
             //string? currDir = Directory.GetParent(@"../../../")?.FullName;
             string? excelFilePath = currDir + "/TestData/InputData.xlsx";
             string? sheetName = "Searchdata";
-            try
-            {
-                List<SearchData> excelDataList = ExcelUtils.ReadSignUpExcelData(excelFilePath, sheetName);
 
-                foreach (var excelData in excelDataList)
+            List<SearchData> excelDataList = ExcelUtils.ReadSignUpExcelData(excelFilePath, sheetName);
+            foreach (var excelData in excelDataList)
+            {
+                try
                 {
 
                     string? fullname = excelData?.FullName;
@@ -47,21 +44,15 @@ namespace Magicbricks.TestScripts
 
 
                     Console.WriteLine($"FullName: {fullname}, Email: {email}, Phonenumber: {phonenumber},RentAmount: {rentamount}, PropertyAddress: {propaddress}, LandOwnerName: {landownername}");
-
-
                     var mbhp = new MagicBricksHP(driver);
-
-
-                IWebElement service = driver.FindElement(By.XPath("//li[@class='js-menu-container'][5]"));
-                Actions actions = new Actions(driver);
+                    IWebElement service = driver.FindElement(By.XPath("//li[@class='js-menu-container'][5]"));
+                    Actions actions = new Actions(driver);
                     actions.MoveToElement(service).Build().Perform();
-                Thread.Sleep(3000);
+                    var genreceipt = fluentwait.Until(d => mbhp.SelectService());
 
-
-                    var genreceipt = fluentwait.Until(d=>mbhp.SelectService());
                     List<string> lstWindow = driver.WindowHandles.ToList();
                     driver.SwitchTo().Window(lstWindow[1]);
-                    genreceipt.Receiptdeatils(fullname,email,phonenumber,rentamount,propaddress,landownername);
+                    genreceipt.Receiptdeatils(fullname, email, phonenumber, rentamount, propaddress, landownername);
 
                     TakeScreenshot();
                     Assert.That(driver.Url.Contains("propertyservices"));
@@ -72,23 +63,17 @@ namespace Magicbricks.TestScripts
 
                 }
 
+
+                catch (ArgumentException ex)
+                {
+                    LogTestResult("Geneate receipt test failed", ex.Message);
+                }
             }
-            catch (ArgumentException ex)
-            {
-                LogTestResult("Geneate receipt test failed", ex.Message);
-            }
-
-
-            // Assert.That(""."")
-
         }
-
-
-
-
         //Log.CloseAndFlush();
 
     }
 }
+
 
 

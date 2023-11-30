@@ -10,12 +10,12 @@ using System.Text;
 using System.Threading.Tasks;
 using Magicbricks.Utilities;
 using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
 
 namespace Magicbricks.PageObjects
 {
-    internal class MagicBricksHP
+    internal class MagicBricksHP:CoreCodes
     {
-
         public IWebDriver driver;
         public MagicBricksHP(IWebDriver? driver)
         {
@@ -24,53 +24,53 @@ namespace Magicbricks.PageObjects
         }
         //Arrange
         [FindsBy(How = How.XPath, Using = "//input[@class='mb-search__input']")]
-        public IWebElement? LocationInput { get; set; }
+        private IWebElement? LocationInput { get; set; }
 
 
         [FindsBy(How = How.XPath, Using = "//span[@id='buy_proertyTypeDefault']")]
-        public IWebElement? proprtyselct { get; set; }
+        private IWebElement? proprtyselct { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//label[@id='10002_10003_10021_10022']")]
-        public IWebElement? flatSelect { get; set; }
+        private IWebElement? flatSelect { get; set; }
 
 
         [FindsBy(How = How.XPath, Using = "//span[@id='rent_budget_lbl']")]
-        public IWebElement? Budgetselct { get; set; }
+        private IWebElement? Budgetselct { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//div[text()='₹10 Lac']")]
-        public IWebElement? SpecifyBudget { get; set; }
+        private IWebElement? SpecifyBudget { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//div[@id='maxBhkIndex_10']")]
-        public IWebElement? SpecifyBudget1 { get; set; }
+        private IWebElement? SpecifyBudget1 { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//div[@class='mb-search__btn']")]
-        public IWebElement? SearchButton { get; set; }
+        private IWebElement? SearchButton { get; set; }
 
 
         [FindsBy(How = How.XPath, Using = "//a[text()='Login']")]
-        public IWebElement? Logindrop { get; set; }
+        private IWebElement? Logindrop { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//a[@class='mb-login__drop-cta' and contains(text(),'Login')]")]
-        public IWebElement? Loginclick { get; set; }
+        private IWebElement? Loginclick { get; set; }
 
         [FindsBy(How = How.LinkText, Using = "Sign Up")]
-        public IWebElement? SignUp { get; set; }
+        private IWebElement? SignUp { get; set; }
         [FindsBy(How = How.XPath, Using = "//li[@class='js-menu-container'][4]")]
-        public IWebElement? PropertyService { get; set; }
+        private IWebElement? PropertyService { get; set; }
         [FindsBy(How = How.XPath, Using = "//a[text()='Generate Rent Receipt']")]
-        public IWebElement? Rentreceipt { get; set; }
+        private IWebElement? Rentreceipt { get; set; }
        
         [FindsBy(How = How.XPath, Using = "//a[text()='Post Property']")]
-        public IWebElement? PostPropertyclick { get; set; }
+        private IWebElement? PostPropertyclick { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//a[text()='Chennai']//preceding::ul[@class='city-drop-link-group']")]
-        public IWebElement? Specificlocationclick { get; set; }
+        private IWebElement? Specificlocationclick { get; set; }
       
         [FindsBy(How = How.XPath, Using = "//div[@class='mb-header__main__city js-menu-container']")]
-        public IWebElement? Locationclick { get; set; }
+        private IWebElement? Locationclick { get; set; }
        
         [FindsBy(How = How.XPath, Using = "//a[text()='Help Center']//ancestor::div[@class='drop-call']")]
-        public IWebElement? Helpcenter { get; set; }
+        private IWebElement? Helpcenter { get; set; }
 
         //Act
         public Property Search(string scity)
@@ -120,8 +120,10 @@ namespace Magicbricks.PageObjects
         }
         public void Locationcheck()
         {
+            var fluentWait = Waits(driver);
             Locationclick?.Click();
             Specificlocationclick?.Click();
+            //IWebElement pageLoadedElement = fluentWait.Until(ExpectedConditions.ElementIsVisible(By.XPath("");
 
         }
         

@@ -18,26 +18,27 @@ namespace Magicbricks.PageObjects
             PageFactory.InitElements(driver, this);
         }
 
-         [FindsBy(How = How.XPath, Using = "//input[@id='ubiusertype2']")]
-        public IWebElement? Checkbox { get; set; }
+        [FindsBy(How = How.XPath, Using = "//input[@id='ubiusertype2']")]
+        private IWebElement? Checkbox { get; set; }
+
         [FindsBy(How = How.Id, Using = "ubifname")]
-        public IWebElement? Name { get; set; }
+        private IWebElement? Name { get; set; }
 
         [FindsBy(How = How.Id, Using = "ubiemail")]
-        public IWebElement? EmaiL { get; set; }
+        private IWebElement? EmaiL { get; set; }
 
         [FindsBy(How = How.Id, Using = "ubipass")]
-        public IWebElement? Password { get; set; }
+        private IWebElement? Password { get; set; }
 
         [FindsBy(How = How.Id, Using = "ubimobile1")]
-        public IWebElement? PhoneNumber { get; set; }
+        private IWebElement? PhoneNumber { get; set; }
 
 
         [FindsBy(How = How.XPath, Using = "//label[@for='tc__checkbox']")]
-        public IWebElement? AgreeCheckbox { get; set; }
+        private IWebElement? AgreeCheckbox { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//button[@class='mui-btn mui-btn--primary']")]
-        public IWebElement? SignupButton { get; set; }
+        private IWebElement? SignupButton { get; set; }
         public void Regstr(string fullname, string email,string password, string phonenumber)
         {
             Thread.Sleep(3000);

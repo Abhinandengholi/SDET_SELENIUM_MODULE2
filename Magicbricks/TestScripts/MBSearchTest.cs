@@ -15,10 +15,9 @@ namespace Magicbricks.TestScripts
     internal class MBSearchTest : CoreCodes
     {
         //Asserts
-
         [Test, Order(1), Category("Regression Test")]
         public void SearchTest()
-        { 
+        {
 
             var fluentWait = Waits(driver);
             string currDir = Directory.GetParent(@"../../../").FullName;
@@ -29,56 +28,53 @@ namespace Magicbricks.TestScripts
                 .CreateLogger();
             MagicBricksHP mbhp = new(driver);
 
-          
             //string? currDir = Directory.GetParent(@"../../../")?.FullName;
             string? excelFilePath = currDir + "/TestData/InputData.xlsx";
             string? sheetName = "Searchdata";
             List<SearchData> excelDataList = ExcelUtils.ReadSignUpExcelData(excelFilePath, sheetName);
             foreach (var excelData in excelDataList)
             {
-                string? scity = excelData?.CitySelection;
-                string? fullname = excelData?.FullName;
-                string? email = excelData?.Email;
-                string? phonenumber = excelData?.PhoneNumber;
-
-                Console.WriteLine($"CitySelection: {scity}");
-                Console.WriteLine($"FullName: {fullname}, Email: {email}, Phonenumber: {phonenumber}");
-
-                
-                var property = fluentWait.Until(d=>mbhp.Search(scity));
                 try
                 {
+                    string? scity = excelData?.CitySelection;
+                    string? fullname = excelData?.FullName;
+                    string? email = excelData?.Email;
+                    string? phonenumber = excelData?.PhoneNumber;
+
+                    Console.WriteLine($"CitySelection: {scity}");
+                    Console.WriteLine($"FullName: {fullname}, Email: {email}, Phonenumber: {phonenumber}");
+                    var property = fluentWait.Until(d => mbhp.Search(scity));
+
+
                     TakeScreenshot();
                     Assert.That(driver.Url.Contains("Residential-House"));
-                    
+
                     LogTestResult("Proprty", "Search test success");
                     test = extent.CreateTest("success");
                     test.Pass("Search completed");
+                    var specificproperty = property.SelectedProp();
 
+                    List<string> lstWindow = driver.WindowHandles.ToList();
+                    driver.SwitchTo().Window(lstWindow[1]);
+                    Console.WriteLine(driver.Url);
+                    specificproperty.Booking(fullname, email, phonenumber);
                 }
                 catch (AssertionException ex)
                 {
                     LogTestResult("Search test failed", ex.Message);
-                   
-                }
-                var specificproperty = property.SelectedProp();
 
-                List<string> lstWindow = driver.WindowHandles.ToList();
-                driver.SwitchTo().Window(lstWindow[1]);
-                Console.WriteLine(driver.Url);
-                specificproperty.Booking(fullname, email, phonenumber);
-                // Assert.That(""."")
+                }
 
             }
         }
 
-        
     }
+}
 
 
 
         
     
-}
+
         
 

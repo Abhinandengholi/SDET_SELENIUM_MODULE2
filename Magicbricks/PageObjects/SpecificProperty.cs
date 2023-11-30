@@ -19,19 +19,21 @@ namespace Magicbricks.PageObjects
             this.driver = driver ?? throw new ArgumentException(nameof(driver));
             PageFactory.InitElements(driver, this);
         }
+        //Arrange
         [FindsBy(How = How.XPath, Using = "//a[text()='Contact Owner']")]
-        public IWebElement? Booksitevisit { get; set; }
+        private IWebElement? Booksitevisit { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//input[@id='userName']")]
-        public IWebElement? Name { get; set; }
+        private IWebElement? Name { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//input[@id='userEmail']")]
-        public IWebElement? EmaiL { get; set; }
+        private IWebElement? EmaiL { get; set; }
         [FindsBy(How = How.XPath, Using = "//input[@id='userMobile']")]
-        public IWebElement? PhoneNumber{ get; set; }
+        private IWebElement? PhoneNumber{ get; set; }
 
         [FindsBy(How = How.XPath, Using = "//button[text()='Continue']")]
-        public IWebElement? Continue { get; set; }
+        private IWebElement? Continue { get; set; }
+        //Act
         public void Booking(string fullname, string email, string phonenumber)
         {
             

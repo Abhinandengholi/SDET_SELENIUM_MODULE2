@@ -19,7 +19,7 @@ namespace Magicbricks.PageObjects
         }
         
         [FindsBy(How = How.XPath, Using = "//div[@class='mb-srp__list'][6]")]
-        public IWebElement? SelectProperty { get; set; }
+        private IWebElement? SelectProperty { get; set; }
 
         public SpecificProperty SelectedProp()
         {

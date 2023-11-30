@@ -11,7 +11,6 @@ namespace Magicbricks.PageObjects
     internal class GenerateReceipt
 
     {
-
         public IWebDriver driver;
         public GenerateReceipt(IWebDriver? driver)
         {
@@ -19,46 +18,42 @@ namespace Magicbricks.PageObjects
             PageFactory.InitElements(driver, this);
         }
         [FindsBy(How = How.Id, Using = "rentAmount")]
-        public IWebElement? RentAmount { get; set; }
+        private IWebElement? RentAmount { get; set; }
 
 
         [FindsBy(How = How.Id, Using = "rentedPropertyAddress")]
-        public IWebElement? PropertyAddress { get; set; }
+        private IWebElement? PropertyAddress { get; set; }
 
 
         [FindsBy(How = How.Id, Using = "landlordName")]
-        public IWebElement? LandOwnerName { get; set; }
+        private IWebElement? LandOwnerName { get; set; }
 
         [FindsBy(How = How.Id, Using = "tenantName")]
-        public IWebElement? Name { get; set; }
+        private IWebElement? Name { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//input[@id='email']")]
-        public IWebElement? EmaiL { get; set; }
-
-        
+        private IWebElement? EmaiL { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//input[@id='tenantMobileNumber']")]
-        public IWebElement? PhoneNumber { get; set; }
+        private IWebElement? PhoneNumber { get; set; }
         
         [FindsBy(How = How.XPath, Using = "//input[@id='receiptStartDate']")]
-        public IWebElement? Clickstrtdate { get; set; }
-
-
+        private IWebElement? Clickstrtdate { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//input[@id='receiptEndDate']")]
-        public IWebElement? Clickenddate { get; set; }
+        private IWebElement? Clickenddate { get; set; }
         [FindsBy(How = How.XPath, Using = "(//span[@class='flatpickr-day '])[2]")]
-        public IWebElement?   Selectstrtdate { get; set; }
-
-
+        private IWebElement?   Selectstrtdate { get; set; }
 
         [FindsBy(How = How.XPath, Using = "(//span[@class='flatpickr-day '])[50]")]
-        public IWebElement? Selectenddate { get; set; }
+        private IWebElement? Selectenddate { get; set; }
         [FindsBy(How = How.XPath, Using = "//label[@for='tnc-checkbox']")]
-        public IWebElement? checkbx { get; set; }
+        private IWebElement? checkbx { get; set; }
         
         [FindsBy(How = How.XPath, Using = "//div[@class='mb-form__col text-right']//following::a[text()='Generate Rent Receipt Now']")]
-        public IWebElement? generatecheckbx { get; set; }
+        private IWebElement? generatecheckbx { get; set; }
+
+        //Act
         public void Receiptdeatils(string fullname, string email, string phonenumber,string rentamount,string propaddress,string landownername )
         {
             RentAmount?.Click();

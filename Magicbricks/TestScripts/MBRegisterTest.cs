@@ -31,26 +31,21 @@ namespace Magicbricks.TestScripts
             //string? currDir = Directory.GetParent(@"../../../")?.FullName;
             string? excelFilePath = currDir + "/TestData/InputData.xlsx";
             string? sheetName = "Searchdata";
-            try
+
+            List<SearchData> excelDataList = ExcelUtils.ReadSignUpExcelData(excelFilePath, sheetName);
+
+            foreach (var excelData in excelDataList)
             {
-
-                List<SearchData> excelDataList = ExcelUtils.ReadSignUpExcelData(excelFilePath, sheetName);
-
-                foreach (var excelData in excelDataList)
+                try
                 {
-
 
                     string? fullname = excelData?.FullName;
                     string? email = excelData?.Email;
                     string? password = excelData?.Password;
-
                     string? phonenumber = excelData?.PhoneNumber;
 
-
                     Console.WriteLine($"FullName: {fullname}, Email: {email}, Phonenumber: {phonenumber}");
-
-
-                    var register =fluentwait.Until(d=> mbhp.Login());
+                    var register = fluentwait.Until(d => mbhp.Login());
                     List<string> lstWindow = driver.WindowHandles.ToList();
                     driver.SwitchTo().Window(lstWindow[1]);
                     TakeScreenshot();
@@ -62,23 +57,14 @@ namespace Magicbricks.TestScripts
                     Console.WriteLine(driver.Url);
                     register.Regstr(fullname, email, password, phonenumber);
 
-
-
-                    // Assert.That(""."")
-
                 }
 
-
-
-
-                //Log.CloseAndFlush();
+                catch (ArgumentException ex)
+                {
+                    LogTestResult("Registeration test failed", ex.Message);
+                }
             }
-            catch (ArgumentException ex)
-            {
-                LogTestResult("Registeration test failed", ex.Message);
-            }
+            //Log.CloseAndFlush();
         }
-
-        
     }
 }

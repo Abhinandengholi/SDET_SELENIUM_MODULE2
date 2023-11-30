@@ -17,15 +17,16 @@ namespace Magicbricks.PageObjects
             this.driver = driver ?? throw new ArgumentException(nameof(driver));
             PageFactory.InitElements(driver, this);
         }
-
+        //Arrange
         [FindsBy(How = How.XPath, Using = "//input[@class='m-login__input' and @id='emailOrMobile']")]
-        public IWebElement? Emailormobfield { get; set; }
+        private IWebElement? Emailormobfield { get; set; }
 
         [FindsBy(How = How.Id, Using = "btnStep1")]
-        public IWebElement? ClickNext { get; set; }
+        private IWebElement? ClickNext { get; set; }
+        //Act
         public void UserDetail(string email)
         {
-            Thread.Sleep(3000);
+           
             Emailormobfield?.Click();
             Emailormobfield?.SendKeys(email);
             ClickNext?.Click();
