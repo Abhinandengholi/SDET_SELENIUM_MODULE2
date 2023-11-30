@@ -16,5 +16,6 @@ namespace Magicbricks.Utilities
         public string? RentAmount { get; set; }
         public string? PropertyAddress { get; set; }
         public string? LandOwnerName { get; set; }
+        public string? QuestionInput { get; set; }
     }
 }
