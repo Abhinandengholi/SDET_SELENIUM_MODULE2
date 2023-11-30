@@ -18,12 +18,9 @@ namespace Magicbricks.TestScripts
 
         [Test, Order(1), Category("Regression Test")]
         public void SearchTest()
-        {
-            DefaultWait<IWebDriver> fluentWait = new DefaultWait<IWebDriver>(driver);
-            fluentWait.Timeout = TimeSpan.FromSeconds(5);
-            fluentWait.PollingInterval = TimeSpan.FromMilliseconds(5);
-            fluentWait.IgnoreExceptionTypes(typeof(NoSuchElementException));
-            fluentWait.Message = "element not found";
+        { 
+
+            var fluentWait = Waits(driver);
             string currDir = Directory.GetParent(@"../../../").FullName;
             string logfilepath = currDir + "/Logs/log_" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".txt";
             Log.Logger = new LoggerConfiguration()

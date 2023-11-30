@@ -59,6 +59,18 @@ namespace Magicbricks.PageObjects
         public IWebElement? PropertyService { get; set; }
         [FindsBy(How = How.XPath, Using = "//a[text()='Generate Rent Receipt']")]
         public IWebElement? Rentreceipt { get; set; }
+       
+        [FindsBy(How = How.XPath, Using = "//a[text()='Post Property']")]
+        public IWebElement? PostPropertyclick { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//a[text()='Chennai']//preceding::ul[@class='city-drop-link-group']")]
+        public IWebElement? Specificlocationclick { get; set; }
+      
+        [FindsBy(How = How.XPath, Using = "//div[@class='mb-header__main__city js-menu-container']")]
+        public IWebElement? Locationclick { get; set; }
+       
+        [FindsBy(How = How.XPath, Using = "//a[text()='Help Center']//ancestor::div[@class='drop-call']")]
+        public IWebElement? Helpcenter { get; set; }
 
         //Act
         public Property Search(string scity)
@@ -100,7 +112,21 @@ namespace Magicbricks.PageObjects
 
             return new GenerateReceipt(driver);
 
+        }
+        public void SellProp()
+        {
+            PostPropertyclick?.Click();
 
+        }
+        public void Locationcheck()
+        {
+            Locationclick?.Click(); 
+            Thread.Sleep(3000);
+            Specificlocationclick?.Click();
+        }
+        public void Helpclick()
+        {
+            Helpcenter?.Click();
         }
     }
        

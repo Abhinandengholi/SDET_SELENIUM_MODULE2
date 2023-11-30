@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Serilog;
+using OpenQA.Selenium.Support.UI;
 
 namespace Magicbricks.Utilities
 {
@@ -110,6 +111,15 @@ namespace Magicbricks.Utilities
                 Log.Error($"Test failed for{testName}.\n Exception: \n{errorMessage}");
                 test.Fail(result);
             }
+        }
+        public DefaultWait<IWebDriver> Waits(IWebDriver driver)
+        {
+            DefaultWait<IWebDriver> fluentWait = new DefaultWait<IWebDriver>(driver);
+            fluentWait.Timeout = TimeSpan.FromSeconds(5);
+            fluentWait.PollingInterval = TimeSpan.FromMilliseconds(100);
+            fluentWait.IgnoreExceptionTypes(typeof(NoSuchElementException));
+            fluentWait.Message = "element not found";
+            return fluentWait;
         }
     }
 

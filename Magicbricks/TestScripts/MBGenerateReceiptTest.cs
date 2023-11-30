@@ -19,6 +19,7 @@ namespace Magicbricks.TestScripts
         [Test, Order(1), Category("Regression Test")]
         public void GeneratereceiptTest()
         {
+            var fluentwait = Waits(driver);
             string currDir = Directory.GetParent(@"../../../").FullName;
             string logfilepath = currDir + "/Logs/log_" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".txt";
             Log.Logger = new LoggerConfiguration()
@@ -57,7 +58,7 @@ namespace Magicbricks.TestScripts
                 Thread.Sleep(3000);
 
 
-                    var genreceipt = mbhp.SelectService();
+                    var genreceipt = fluentwait.Until(d=>mbhp.SelectService());
                     List<string> lstWindow = driver.WindowHandles.ToList();
                     driver.SwitchTo().Window(lstWindow[1]);
                     genreceipt.Receiptdeatils(fullname,email,phonenumber,rentamount,propaddress,landownername);

@@ -19,6 +19,7 @@ namespace Magicbricks.TestScripts
         [Test, Order(1), Category("Regression Test")]
         public void LoginTest()
         {
+            var fluentwait = Waits(driver);
             string currDir = Directory.GetParent(@"../../../").FullName;
             string logfilepath = currDir + "/Logs/log_" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".txt";
             Log.Logger = new LoggerConfiguration()
@@ -49,7 +50,7 @@ namespace Magicbricks.TestScripts
                     Console.WriteLine($"FullName: {fullname}, Email: {email}, Phonenumber: {phonenumber}");
 
 
-                    var register = mbhp.Login();
+                    var register =fluentwait.Until(d=> mbhp.Login());
                     List<string> lstWindow = driver.WindowHandles.ToList();
                     driver.SwitchTo().Window(lstWindow[1]);
                     TakeScreenshot();
