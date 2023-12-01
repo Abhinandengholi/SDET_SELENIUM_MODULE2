@@ -45,7 +45,7 @@ namespace Magicbricks.TestScripts
 
                     Console.WriteLine($"FullName: {fullname}, Email: {email}, Phonenumber: {phonenumber},RentAmount: {rentamount}, PropertyAddress: {propaddress}, LandOwnerName: {landownername}");
                     var mbhp = new MagicBricksHP(driver);
-                    IWebElement service = driver.FindElement(By.XPath("//li[@class='js-menu-container'][5]"));
+                    IWebElement service = fluentwait.Until(d=>driver.FindElement(By.XPath("//li[@class='js-menu-container'][5]")));
                     Actions actions = new Actions(driver);
                     actions.MoveToElement(service).Build().Perform();
                     var genreceipt = fluentwait.Until(d => mbhp.SelectService());
@@ -72,7 +72,7 @@ namespace Magicbricks.TestScripts
                 }
             }
         }
-        //Log.CloseAndFlush();
+      
 
     }
 }

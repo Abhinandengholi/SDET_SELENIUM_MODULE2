@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using Magicbricks.Utilities;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using SeleniumExtras.PageObjects;
 using System;
@@ -33,16 +34,13 @@ namespace Magicbricks.PageObjects
         {
             
             Exitclick?.Click();
-            TextField?.Click();
-            Thread.Sleep(3000);
-           
+            TextField?.Click();           
             TextField?.SendKeys(question);
-            Thread.Sleep(2000);
-            TextField?.Click();
            
-            selectqstn?.Click();
-            
-          
+            TextField?.Click();
+            Thread.Sleep(2000);
+           
+            selectqstn?.Click();     
             
             
         }

@@ -27,8 +27,7 @@ namespace Magicbricks.TestScripts
                 .WriteTo.File(logfilepath, rollingInterval: RollingInterval.Day)
                 .CreateLogger();
             MagicBricksHP mbhp = new(driver);
-            Thread.Sleep(2000);
-            //string? currDir = Directory.GetParent(@"../../../")?.FullName;
+            
             string? excelFilePath = currDir + "/TestData/InputData.xlsx";
             string? sheetName = "Searchdata";
 
@@ -48,14 +47,15 @@ namespace Magicbricks.TestScripts
                     var register = fluentwait.Until(d => mbhp.Login());
                     List<string> lstWindow = driver.WindowHandles.ToList();
                     driver.SwitchTo().Window(lstWindow[1]);
+                    register.Regstr(fullname, email, password, phonenumber);
                     TakeScreenshot();
                     Assert.That(driver.Url.Contains("login"));
 
                     LogTestResult("Registeration complete", "Register test success");
                     test = extent.CreateTest("success");
                     test.Pass("Register completed");
-                    Console.WriteLine(driver.Url);
-                    register.Regstr(fullname, email, password, phonenumber);
+                    //Console.WriteLine(driver.Url);
+                   
 
                 }
 
@@ -67,7 +67,7 @@ namespace Magicbricks.TestScripts
                     test.Fail("Registeration test failed");
                 }
             }
-            //Log.CloseAndFlush();
+           
         }
     }
 }

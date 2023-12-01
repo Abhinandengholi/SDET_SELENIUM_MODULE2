@@ -25,7 +25,7 @@ namespace Magicbricks.TestScripts
                 .WriteTo.Console()
                 .WriteTo.File(logfilepath, rollingInterval: RollingInterval.Day)
                 .CreateLogger();
-            //string? currDir = Directory.GetParent(@"../../../")?.FullName;
+            
             string? excelFilePath = currDir + "/TestData/InputData.xlsx";
             string? sheetName = "Searchdata";
             
@@ -42,12 +42,13 @@ namespace Magicbricks.TestScripts
                     var userlogin = fluentwait.Until(d => mbhp.UserLog());
                     List<string> lstWindow = driver.WindowHandles.ToList();
                     driver.SwitchTo().Window(lstWindow[1]);
+                    userlogin.UserDetail(email);
                     TakeScreenshot();
                     Assert.That(driver.Url.Contains("login"));
                     LogTestResult("login success", "login test success");
                     test = extent.CreateTest("success");
                     test.Pass("login completed");
-                    userlogin.UserDetail(email);
+                   
                 }
 
 
@@ -61,7 +62,7 @@ namespace Magicbricks.TestScripts
             }
         }
     }
-    //Log.CloseAndFlush();
+    
 }
 
 

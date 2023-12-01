@@ -25,7 +25,7 @@ namespace Magicbricks.TestScripts
                 .CreateLogger();
             UserLogin userlog = new UserLogin(driver);
             Log.Information("Login started");
-            Thread.Sleep(2000);
+           
             try
             {
                 fluentwait.Until(d => userlog);

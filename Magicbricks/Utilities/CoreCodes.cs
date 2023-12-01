@@ -82,6 +82,7 @@ namespace Magicbricks.Utilities
         {
             extent.Flush();
             driver.Quit();
+            Log.CloseAndFlush();
         }
         public void TakeScreenshot()
         {

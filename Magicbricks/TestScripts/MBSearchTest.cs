@@ -44,20 +44,18 @@ namespace Magicbricks.TestScripts
                     Console.WriteLine($"CitySelection: {scity}");
                     Console.WriteLine($"FullName: {fullname}, Email: {email}, Phonenumber: {phonenumber}");
                     var property = fluentWait.Until(d => mbhp.Search(scity));
-
+                    List<string> lstWindow = driver.WindowHandles.ToList();
+                    driver.SwitchTo().Window(lstWindow[1]);
+                    var specificproperty = fluentWait.Until(d => property.SelectedProp());
+                    specificproperty.Booking(fullname, email, phonenumber);
 
                     TakeScreenshot();
                     Assert.That(driver.Url.Contains("Residential-House"));
-
                     LogTestResult("Proprty", "Search test success");
-                    test = extent.CreateTest("success");
-                    test.Pass("Search completed");
-                    var specificproperty = property.SelectedProp();
-
-                    List<string> lstWindow = driver.WindowHandles.ToList();
-                    driver.SwitchTo().Window(lstWindow[1]);
-                    Console.WriteLine(driver.Url);
-                    specificproperty.Booking(fullname, email, phonenumber);
+                    test = extent.CreateTest("Search success");
+                    test.Pass("Search  test success");
+                    //Console.WriteLine(driver.Url);
+                    
                 }
                 catch (AssertionException ex)
                 {

@@ -29,6 +29,7 @@ namespace Magicbricks.TestScripts
             try
             {
                 var mbhp = new MagicBricksHP(driver);
+                fluentwait.Until(d=>mbhp);
                 mbhp.Locationcheck();
                 TakeScreenshot();
                 Assert.That(driver.Url.Contains("residential"));

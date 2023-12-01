@@ -37,8 +37,7 @@ namespace Magicbricks.TestScripts
                     string? question = excelData?.QuestionInput;
                     Console.WriteLine($"QuestionIn: {question}");
                     var mbhp = new MagicBricksHP(driver);
-                    
-                    Thread.Sleep(2000);
+
                     var helpcntr = fluentwait.Until(d => mbhp.Helpclick());
                     List<string> lstWindow = driver.WindowHandles.ToList();
                     driver.SwitchTo().Window(lstWindow[1]);

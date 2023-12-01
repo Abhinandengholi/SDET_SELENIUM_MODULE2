@@ -42,7 +42,6 @@ namespace Magicbricks.PageObjects
         public void Regstr(string fullname, string email,string password, string phonenumber)
         {
             Thread.Sleep(3000);
-            Console.WriteLine(driver.Url);
             Checkbox?.Click();
             Name?.SendKeys(fullname);
             EmaiL?.SendKeys(email);
