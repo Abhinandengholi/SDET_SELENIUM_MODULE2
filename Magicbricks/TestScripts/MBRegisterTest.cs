@@ -61,7 +61,10 @@ namespace Magicbricks.TestScripts
 
                 catch (ArgumentException ex)
                 {
-                    LogTestResult("Registeration test failed", ex.Message);
+
+                    TakeScreenshot();
+                    LogTestResult("Registeration test failed", "Registeration test failed", ex.Message);
+                    test.Fail("Registeration test failed");
                 }
             }
             //Log.CloseAndFlush();

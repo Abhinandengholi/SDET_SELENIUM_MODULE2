@@ -112,7 +112,7 @@ namespace Magicbricks.Utilities
                 test.Fail(result);
             }
         }
-        public DefaultWait<IWebDriver> Waits(IWebDriver driver)
+        public static DefaultWait<IWebDriver> Waits(IWebDriver driver)
         {
             DefaultWait<IWebDriver> fluentWait = new DefaultWait<IWebDriver>(driver);
             fluentWait.Timeout = TimeSpan.FromSeconds(5);

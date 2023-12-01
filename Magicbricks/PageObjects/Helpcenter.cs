@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 using SeleniumExtras.PageObjects;
 using System;
 using System.Collections.Generic;
@@ -17,24 +18,32 @@ namespace Magicbricks.PageObjects
             PageFactory.InitElements(driver, this);
         }
         //Arrange
-        [FindsBy(How = How.XPath, Using = "//label[text()='Agent']")]
-        private IWebElement? UserType { get; set; }
-
-        [FindsBy(How = How.XPath, Using = "//input[@class='btn__get-answer']")]
-        private IWebElement? SelectGetAnswer { get; set; }
-
-        [FindsBy(How = How.Id, Using = "searchContentDiv")]
+       
+        [FindsBy(How = How.XPath, Using = "//input[@id='searchContentInput']")]
         private IWebElement? TextField { get; set; }
-
-        [FindsBy(How = How.XPath, Using = "//input[@class='home-search___submit']")]
-        private IWebElement? Selectbutton { get; set; }
+       
+      
+        [FindsBy(How = How.XPath, Using = "//a[@id='userPersonaPopupCloseAnchor']")]
+        private IWebElement? Exitclick { get; set; }
+        [FindsBy(How = How.XPath, Using = "(//li[@class='ui-menu-item']//child::div[contains(text(),'How')])[position()=1]")]
+        private IWebElement? selectqstn { get; set; }
+        
         //Act
         public void SelectingUser(string question)
         {
-            UserType?.Click();
-            SelectGetAnswer?.Click();
+            
+            Exitclick?.Click();
+            TextField?.Click();
+            Thread.Sleep(3000);
+           
             TextField?.SendKeys(question);
-            Selectbutton?.Click();
+            Thread.Sleep(2000);
+            TextField?.Click();
+           
+            selectqstn?.Click();
+            
+          
+            
             
         }
         

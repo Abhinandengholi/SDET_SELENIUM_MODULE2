@@ -66,7 +66,9 @@ namespace Magicbricks.TestScripts
 
                 catch (ArgumentException ex)
                 {
-                    LogTestResult("Geneate receipt test failed", ex.Message);
+                    TakeScreenshot();
+                    LogTestResult("Geneate receipt test failed", "Geneate receipt test failed", ex.Message);
+                    test.Fail("Geneate receipt test failed");
                 }
             }
         }

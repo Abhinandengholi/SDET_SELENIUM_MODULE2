@@ -14,7 +14,7 @@ using SeleniumExtras.WaitHelpers;
 
 namespace Magicbricks.PageObjects
 {
-    internal class MagicBricksHP:CoreCodes
+    internal class MagicBricksHP
     {
         public IWebDriver driver;
         public MagicBricksHP(IWebDriver? driver)
@@ -69,8 +69,11 @@ namespace Magicbricks.PageObjects
         [FindsBy(How = How.XPath, Using = "//div[@class='mb-header__main__city js-menu-container']")]
         private IWebElement? Locationclick { get; set; }
        
-        [FindsBy(How = How.XPath, Using = "//a[text()='Help Center']//ancestor::div[@class='drop-call']")]
+        [FindsBy(How = How.XPath, Using = "//div[@class='drop-call']//following::a[text()='Help Center']")]
         private IWebElement? Helpcenter { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//li[@class='js-menu-container']//following::a[text()='Help']")]
+        private IWebElement? Help { get; set; }
 
         //Act
         public Property Search(string scity)
@@ -120,16 +123,16 @@ namespace Magicbricks.PageObjects
         }
         public void Locationcheck()
         {
-            var fluentWait = Waits(driver);
+            
             Locationclick?.Click();
             Specificlocationclick?.Click();
-            //IWebElement pageLoadedElement = fluentWait.Until(ExpectedConditions.ElementIsVisible(By.XPath("");
-
+            
         }
         
         
         public Helpcenter  Helpclick()
         {
+            Help?.Click();
             Helpcenter?.Click();
             return new Helpcenter(driver);
         }

@@ -61,7 +61,9 @@ namespace Magicbricks.TestScripts
                 }
                 catch (AssertionException ex)
                 {
-                    LogTestResult("Search test failed", ex.Message);
+                    TakeScreenshot();
+                    LogTestResult("Search test failed", "Searching test failed", ex.Message);
+                    test.Fail("Search test failed");
 
                 }
 

@@ -108,7 +108,7 @@ namespace Magicbricks.TestScripts
                 test = extent.CreateTest("ph. number test pass");
                 test.Pass("ph. number test passed");
             }
-            catch (ArgumentException ex)
+            catch (AssertionException ex)
             {
                 TakeScreenshot();
                 LogTestResult("ph. number test failed", "login failed", ex.Message);

@@ -51,9 +51,12 @@ namespace Magicbricks.TestScripts
                 }
 
 
-                catch (ArgumentException ex)
+                catch (AssertionException ex)
                 {
-                    LogTestResult("login test failed", ex.Message);
+
+                    TakeScreenshot();
+                    LogTestResult("login test failed", "login test failed", ex.Message);
+                    test.Fail("login test failed");
                 }
             }
         }
