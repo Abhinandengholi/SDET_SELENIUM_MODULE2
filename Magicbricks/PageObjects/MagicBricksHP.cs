@@ -98,6 +98,7 @@ namespace Magicbricks.PageObjects
         public Register Login()
         {
             Logindrop?.Click();
+            Thread.Sleep(3000);
             SignUp?.Click();
             return new Register(driver);
         }

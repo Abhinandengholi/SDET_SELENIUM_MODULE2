@@ -20,7 +20,7 @@ namespace Magicbricks.PageObjects
             PageFactory.InitElements(driver, this);
         }
         //Arrange
-        [FindsBy(How = How.XPath, Using = "//a[text()='Contact Owner']")]
+        [FindsBy(How = How.XPath, Using = "(//a[text()='Contact Owner'])[1]")]
         private IWebElement? Booksitevisit { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//input[@id='userName']")]

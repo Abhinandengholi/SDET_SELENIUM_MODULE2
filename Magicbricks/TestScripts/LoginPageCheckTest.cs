@@ -13,7 +13,8 @@ namespace Magicbricks.TestScripts
     internal class LoginPageCheckTest:CoreCodes
     {
         [Test, Order(1), Category("Smoke Test")]
-        public void Loginvalidtest()
+        [TestCase("6544355457")]
+        public void Loginvalidtest(string number)
         {
             var fluentwait = Waits(driver);
             driver.Navigate().GoToUrl("https://accounts.magicbricks.com/userauth/login");
@@ -29,7 +30,7 @@ namespace Magicbricks.TestScripts
             try
             {
                 fluentwait.Until(d => userlog);
-                userlog.UserDetail("6544355457");
+                userlog.UserDetail(number);
                 IWebElement num = driver.FindElement(By.XPath("//div[@id='otpHeader']"));
                 string? numtext = num.Text;
                 TakeScreenshot();
@@ -47,7 +48,8 @@ namespace Magicbricks.TestScripts
             }
         }
         [Test, Order(2), Category("Smoke Test")]
-        public void LoginEmailTest()
+        [TestCase("dsrxddxd")]
+        public void LoginEmailTest(string eml)
         {
             var fluentwait = Waits(driver);
             driver.Navigate().GoToUrl("https://accounts.magicbricks.com/userauth/login");
@@ -59,11 +61,11 @@ namespace Magicbricks.TestScripts
                 .CreateLogger();
             UserLogin userlog = new UserLogin(driver);
             Log.Information("Login started");
-            Thread.Sleep(2000);
+          
             try
             {
                 fluentwait.Until(d => userlog);
-                userlog.UserDetail("avgasdfgh");
+                userlog.UserDetail(eml);
                 IWebElement num = driver.FindElement(By.XPath("//div[text()='Please enter a valid Email id.']"));
                 string? numtext = num.Text;
                 TakeScreenshot();
@@ -81,7 +83,8 @@ namespace Magicbricks.TestScripts
             }
         }
         [Test, Order(3), Category("Smoke Test")]
-        public void LoginPhonenumberTest()
+        [TestCase("65457")]
+        public void LoginPhonenumberTest(string num1)
         {
             var fluentwait = Waits(driver);
             driver.Navigate().GoToUrl("https://accounts.magicbricks.com/userauth/login");
@@ -97,7 +100,7 @@ namespace Magicbricks.TestScripts
             try
             {
                 fluentwait.Until(d => userlog);
-                userlog.UserDetail("65765");
+                userlog.UserDetail(num1);
                 IWebElement num = driver.FindElement(By.Id("step1Error"));
                 string? numtext = num.Text;
                 TakeScreenshot();

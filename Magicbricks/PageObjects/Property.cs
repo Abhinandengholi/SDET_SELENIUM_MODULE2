@@ -18,13 +18,14 @@ namespace Magicbricks.PageObjects
             PageFactory.InitElements(driver, this);
         }
         
-        [FindsBy(How = How.XPath, Using = "//div[@class='mb-srp__list'][6]")]
+        [FindsBy(How = How.XPath, Using = "//div[@class='mb-srp__list'][2]")]
         private IWebElement? SelectProperty { get; set; }
+        //div[@class='mb-srp__list'][position()=7]
 
         public SpecificProperty SelectedProp()
         {
             
-            CoreCodes.ScrollIntoView(driver,SelectProperty);
+            //CoreCodes.ScrollIntoView(driver,SelectProperty);
             Thread.Sleep(3000);
             SelectProperty?.Click();
             return new SpecificProperty(driver);

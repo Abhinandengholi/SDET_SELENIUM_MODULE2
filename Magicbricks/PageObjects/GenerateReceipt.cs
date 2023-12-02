@@ -17,17 +17,19 @@ namespace Magicbricks.PageObjects
             this.driver = driver ?? throw new ArgumentException(nameof(driver));
             PageFactory.InitElements(driver, this);
         }
+        [CacheLookup]
         [FindsBy(How = How.Id, Using = "rentAmount")]
         private IWebElement? RentAmount { get; set; }
 
-
+        [CacheLookup]
         [FindsBy(How = How.Id, Using = "rentedPropertyAddress")]
         private IWebElement? PropertyAddress { get; set; }
 
-
+        [CacheLookup]
         [FindsBy(How = How.Id, Using = "landlordName")]
         private IWebElement? LandOwnerName { get; set; }
 
+        [CacheLookup]
         [FindsBy(How = How.Id, Using = "tenantName")]
         private IWebElement? Name { get; set; }
 
@@ -38,6 +40,7 @@ namespace Magicbricks.PageObjects
         private IWebElement? PhoneNumber { get; set; }
         
         [FindsBy(How = How.XPath, Using = "//input[@id='receiptStartDate']")]
+        [CacheLookup]
         private IWebElement? Clickstrtdate { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//input[@id='receiptEndDate']")]

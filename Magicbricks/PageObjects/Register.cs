@@ -21,20 +21,24 @@ namespace Magicbricks.PageObjects
         [FindsBy(How = How.XPath, Using = "//input[@id='ubiusertype2']")]
         private IWebElement? Checkbox { get; set; }
 
+        [CacheLookup]
         [FindsBy(How = How.Id, Using = "ubifname")]
         private IWebElement? Name { get; set; }
 
+        [CacheLookup]
         [FindsBy(How = How.Id, Using = "ubiemail")]
         private IWebElement? EmaiL { get; set; }
-
+        
+        [CacheLookup]
         [FindsBy(How = How.Id, Using = "ubipass")]
         private IWebElement? Password { get; set; }
 
+        [CacheLookup]
         [FindsBy(How = How.Id, Using = "ubimobile1")]
         private IWebElement? PhoneNumber { get; set; }
 
 
-        [FindsBy(How = How.XPath, Using = "//label[@for='tc__checkbox']")]
+        [FindsBy(How = How.XPath, Using = "//label[contains(text(),'I agree to Magicbricks')]")]
         private IWebElement? AgreeCheckbox { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//button[@class='mui-btn mui-btn--primary']")]

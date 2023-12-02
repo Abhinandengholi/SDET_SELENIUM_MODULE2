@@ -21,6 +21,7 @@ namespace Magicbricks.PageObjects
         [FindsBy(How = How.XPath, Using = "//input[@class='m-login__input' and @id='emailOrMobile']")]
         private IWebElement? Emailormobfield { get; set; }
 
+        [CacheLookup]
         [FindsBy(How = How.Id, Using = "btnStep1")]
         private IWebElement? ClickNext { get; set; }
         //Act

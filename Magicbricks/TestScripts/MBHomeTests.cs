@@ -103,7 +103,7 @@ namespace Magicbricks.TestScripts
             {
                 var mbhp = new MagicBricksHP(driver);
 
-                IWebElement service = driver.FindElement(By.XPath("//a[text()='Help']"));
+                IWebElement service = driver.FindElement(By.XPath("//li[@class='js-menu-container']//following::a[text()='Help']"));
                 Actions actions = new Actions(driver);
                 actions.MoveToElement(service).Build().Perform();
 

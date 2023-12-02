@@ -44,10 +44,13 @@ namespace Magicbricks.TestScripts
                     Console.WriteLine($"CitySelection: {scity}");
                     Console.WriteLine($"FullName: {fullname}, Email: {email}, Phonenumber: {phonenumber}");
                     var property = fluentWait.Until(d => mbhp.Search(scity));
+                   
+                    var specificproperty = fluentWait.Until(d => property.SelectedProp());
                     List<string> lstWindow = driver.WindowHandles.ToList();
                     driver.SwitchTo().Window(lstWindow[1]);
-                    var specificproperty = fluentWait.Until(d => property.SelectedProp());
                     specificproperty.Booking(fullname, email, phonenumber);
+                    //List<string> lstWindow = driver.WindowHandles.ToList();
+                    //driver.SwitchTo().Window(lstWindow[1]);
 
                     TakeScreenshot();
                     Assert.That(driver.Url.Contains("Residential-House"));

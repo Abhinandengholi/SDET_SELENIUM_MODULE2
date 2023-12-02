@@ -49,7 +49,7 @@ namespace Magicbricks.TestScripts
                     driver.SwitchTo().Window(lstWindow[1]);
                     register.Regstr(fullname, email, password, phonenumber);
                     TakeScreenshot();
-                    Assert.That(driver.Url.Contains("login"));
+                    Assert.That(driver.Url.Contains("Registration"));
 
                     LogTestResult("Registeration complete", "Register test success");
                     test = extent.CreateTest("success");
